@@ -3,7 +3,13 @@
 This document provides a step-by-step guide to walk you through the artifact evaluation. 
 The main objective is to reproduce the evaluation results, presented in our paper. 
 
-The experiments provide time estimates in human-time (can be interrupted), and machine-time (cannot be interrupted).
+The experiments provide time estimates in human-time (interactive, can be interrupted), and machine-time (non-interactive, cannot be interrupted). The full evaluation run unattended for a long time. So, you might want to schedule them early in your workday or over-night.
+
+See the provided Artifact Appendix for hardware and software requirements. The diagram below illustrates the overall architecture and data flow.
+
+| <img src="artifact_evaluation_diagram.png"> |
+|--| 
+|Overview of the evaluation setup with indication of the used programming language for the respective components. The main repository `attestable-builds` is used to provision a large EC2 instance. The `ab-samples` repository is then initialized to contain one branch per target. The evaluation scripts read the respective `scenario.csv` to learn about the intended list of targets and configurations. It then trigger workflows one-by-one inside the `ab-samples` repository and starting `HostManager` with the respective configuration (e.g. HS, ES+, \dots) which then starts the `EnclaveClient`. This figure shows an example that is reflective of ES/ES+, i.e. an enclave with an inner sandbox. However, in non-enclave configurations, that are included as a baseline, the `EnclaveClient` might run directly on the host. In all configurations, the enclave client starts a GitHub runner that will checkout the workflow and run the required steps of the build. Since these interact with the GitHub actions normally, they can be observed via the regular web UI. When all workflows have finished, the `pre_process` script converts the gathered log outputs into a `.csv` file. This can then processed with the provided a Jupyter notebook.|
 
 ## Prepare the `ab-samples` repository (5min human-time)
 
@@ -14,15 +20,17 @@ The following list provides a step-by-step overview of the necessary preparation
 1. Unzip the artifact files.
 2. Create a GitHub account and a new repository called `ab-samples`.
 3. Add the unzipped files located in the `ab-samples` directory to your new repository.
+    - Make sure you include the `.git` folder so that the submodule configuration is maintained
+    - Alternatively: fork the [`ab-samples` repository](https://github.com/lambdapioneer/ab-samples) linked from the paper
 4. On GitHub, navigate to the [Developer Settings](https://github.com/settings/apps) of your GitHub account.
 5. Navigate to `Personal access tokens -> Fine-grained tokens` and click `Generate new token`.
 6. Give it a name and select `Only select repositories` and select the new repository (ab-samples).
-7. Click on `Add permissions` and select the following permissions.
-	1. Actions with Read and write.
-	2. Administration with Read and write.
-	3. Commit statuses with Read-only.
-	4. Contents with Read-only.
-	5. Environments with Read-only.
+7. Click on `Add permissions` and select the following permissions:
+	- Actions with Read and write.
+	- Administration with Read and write.
+	- Commit statuses with Read-only.
+	- Contents with Read-only.
+	- Environments with Read-only.
 8. Generate the token and save it. This will be used later to configure the environment variable on the AWS instance.
 
 ## Prepare the AWS environment (10min human-time + 5min machine-time)
@@ -40,7 +48,7 @@ The next step is to prepare the AWS environment, including the security group an
 2. Create a new security group with the following settings:
     - Give it a name (e.g., artifact-eval)
     - Add a description (e.g., Allow SSH and GitHub hooks)
-    - Add a new Inbound rules (Custom TCP; Port range: 22; Source: "My IP" (note: if you have a dynamic IP then you have to change the security group everytime your ISP updates your IP)) 
+    - Add a new Inbound rules (Custom TCP; Port range: 22; Source: "My IP"); note: if you have a dynamic IP then you have to change the security group everytime your ISP updates your IP... 
     - Add another Inbound rule (Custom TCP; Port range: 8000; Source: Anywhere-IPv4)
 
 ### Create the Amazon EC2 instance 

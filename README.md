@@ -1,5 +1,8 @@
 # Attestable Builds
 
+> [!INFO]
+> If you are here for the artifact evaluation, please check out the [walkthrough.md](https://github.com/lambdapioneer/attestable-builds/blob/artifact-eval/walkthrough.md) guide in the dedicated `artifact-eval` branch.
+
 > [!WARNING]  
 > This is a snapshot of a research prototype and is not intended for production use.
 
