@@ -3,13 +3,15 @@
 This document provides a step-by-step guide to walk you through the artifact evaluation. 
 The main objective is to reproduce the evaluation results, presented in our paper. 
 
-The experiments provide time estimates in human-time (interactive, can be interrupted), and machine-time (non-interactive, cannot be interrupted). The full evaluation run unattended for a long time. So, you might want to schedule them early in your workday or over-night.
+The experiments provide time estimates in human-time (interactive, can be interrupted), and machine-time (non-interactive, cannot be interrupted).
+The full evaluations run for a long time. So, you might want to schedule them early in your workday or over-night.
 
-See the provided Artifact Appendix for hardware and software requirements. The diagram below illustrates the overall architecture and data flow.
+See the provided Artifact Appendix for hardware and software requirements.
+The diagram below illustrates the overall architecture and data flow.
 
 | <img src="artifact_evaluation_diagram.png"> |
 |--| 
-|Overview of the evaluation setup with indication of the used programming language for the respective components. The main repository `attestable-builds` is used to provision a large EC2 instance. The `ab-samples` repository is then initialized to contain one branch per target. The evaluation scripts read the respective `scenario.csv` to learn about the intended list of targets and configurations. It then trigger workflows one-by-one inside the `ab-samples` repository and starting `HostManager` with the respective configuration (e.g. HS, ES+, \dots) which then starts the `EnclaveClient`. This figure shows an example that is reflective of ES/ES+, i.e. an enclave with an inner sandbox. However, in non-enclave configurations, that are included as a baseline, the `EnclaveClient` might run directly on the host. In all configurations, the enclave client starts a GitHub runner that will checkout the workflow and run the required steps of the build. Since these interact with the GitHub actions normally, they can be observed via the regular web UI. When all workflows have finished, the `pre_process` script converts the gathered log outputs into a `.csv` file. This can then processed with the provided a Jupyter notebook.|
+|Overview of the evaluation setup with indication of the used programming language for the respective components. The main repository `attestable-builds` is used to provision a large EC2 instance. The `ab-samples` repository is then initialized to contain one branch per target. The evaluation scripts read the respective `scenario.csv` to learn about the intended list of targets and configurations. It then trigger workflows one-by-one inside the `ab-samples` repository and starting `HostManager` with the respective configuration (e.g. HS, ES+, ...) which then starts the `EnclaveClient`. This figure shows an example that is reflective of ES/ES+, i.e. an enclave with an inner sandbox. However, in non-enclave configurations, that are included as a baseline, the `EnclaveClient` might run directly on the host. In all configurations, the enclave client starts a GitHub runner that will checkout the workflow and run the required steps of the build. Since these interact with the GitHub actions normally, they can be observed via the regular web UI. When all workflows have finished, the `pre_process` script converts the gathered log outputs into a `.csv` file. This can then processed with the provided a Jupyter notebook.|
 
 ## Prepare the `ab-samples` repository (5min human-time)
 
