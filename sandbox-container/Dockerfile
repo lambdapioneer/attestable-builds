@@ -1,6 +1,6 @@
 FROM debian:bookworm-slim
 WORKDIR /app
-ARG RUNNER_VERSION="2.323.0"
+ARG RUNNER_VERSION="2.328.0"
 
 # Add the runner user (executes all build tasks and the GitHub runner)
 RUN useradd -m runner --uid 1001

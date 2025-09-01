@@ -3,29 +3,23 @@ import pandas as pd
 # We define individual datasets based on their scenario, folder, and targets
 INPUTS = {
     "big": {
-        "scenario": "scenario_full_big",
-        "folder": "evaluation_2025-04-10_21-57-21",
+        "scenario": "scenario_full_big_one_round",
+        "folder": "output_2025-08-27_15-37-19",
         "targets": [
             'project_clang',
             'project_kernel',
             'project_kernel_llvm',
         ],
     },
-    "new": {
-        "scenario": "scenario_full",
-        "folder": "evaluation_2025-04-09_21-50-36",
+    "full": {
+        "scenario": "scenario_full_one_round",
+        "folder": "output_2025-08-27_15-37-19",
         "targets": [
             "project_gprolog",
             "project_hello",
-            "project_ipxe",
+#            "project_ipxe",
             "project_neovim",
             "project_scheme48",
-        ],
-    },
-    "small": {
-        "scenario": "scenario_full",
-        "folder": "evaluation_2025-04-09_21-50-36",
-        "targets": [
             'project_libsodium',
             'project_tinycc',
             'project_verifier_client',
@@ -33,8 +27,8 @@ INPUTS = {
         ],
     },
     "scalar": {
-        "scenario": "scenario_full",
-        "folder": "evaluation_2025-04-09_21-50-36",
+        "scenario": "scenario_full_one_round",
+        "folder": "output_2025-08-27_15-37-19",
         "targets": [
             f"{project}_j{i}"
             for project in ['project_verifier_client', 'project_xz_tar']

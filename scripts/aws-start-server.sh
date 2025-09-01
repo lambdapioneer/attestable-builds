@@ -84,6 +84,6 @@ fi
 
 # Copy over the .env file
 echo "[ ] Copying over the .env file";
-scp ".env" "$HOSTNAME:~/action-squares/";
+scp ".env" "$HOSTNAME:~/attestable-builds/";
 
 echo "[+] ALL DONE";

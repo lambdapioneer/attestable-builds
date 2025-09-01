@@ -136,7 +136,7 @@ setup-aws: setup-kmods
 	sudo ./scripts/setup-aws-install-packages.sh
 	sudo ./scripts/setup-aws-net-ns.sh
 	sudo ./scripts/setup-aws-nitro-yaml.sh
-	sudo systemctl restart nitro-enclaves-allocator.service
+#	sudo systemctl restart nitro-enclaves-allocator.service
 	sudo /sbin/modprobe vsock_loopback
 	sudo chmod o+x /home/ec2-user
 	sudo ./scripts/setup-runner-rust.sh
@@ -192,27 +192,35 @@ clean-eval:
 	cd evaluation && rm -r env || true
 
 eval-smoketest:
-	sudo rm -rf github-runner/2.323.0/_work
+	sudo rm -rf github-runner/2.328.0/_work
 	cd evaluation && source env/bin/activate && time python main.py scenario_smoke_test
 
 eval-smoketest-big:
-	sudo rm -rf github-runner/2.323.0/_work
+	sudo rm -rf github-runner/2.328.0/_work
 	cd evaluation && source env/bin/activate && time python main.py scenario_smoke_test_big
 
 eval-smoketest-new:
-	sudo rm -rf github-runner/2.323.0/_work
+	sudo rm -rf github-runner/2.328.0/_work
 	cd evaluation && source env/bin/activate && time python main.py scenario_smoke_test_new
 
 eval-full:
-	sudo rm -rf github-runner/2.323.0/_work
+	sudo rm -rf github-runner/2.328.0/_work
 	cd evaluation && source env/bin/activate && time python main.py scenario_full
 
+eval-full-one-round:
+	sudo rm -rf github-runner/2.328.0/_work
+	cd evaluation && source env/bin/activate && time python main.py scenario_full_one_round
+
 eval-full-big:
-	sudo rm -rf github-runner/2.323.0/_work
+	sudo rm -rf github-runner/2.328.0/_work
 	cd evaluation && source env/bin/activate && time python main.py scenario_full_big
 
+eval-full-big-one-round:
+	sudo rm -rf github-runner/2.328.0/_work
+	cd evaluation && source env/bin/activate && time python main.py scenario_full_big_one_round
+
 eval-full-new:
-	sudo rm -rf github-runner/2.323.0/_work
+	sudo rm -rf github-runner/2.328.0/_work
 	cd evaluation && source env/bin/activate && time python main.py scenario_full_new
 
 
