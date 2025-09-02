@@ -73,14 +73,16 @@ Now the EC2 machine can be prepared for running the experiments.
 1. Upload the artifact ZIP file to the server (the public IPv4 address is shown in AWS Portal -> Instances): 
 
    ```bash
-   scp -i <path-to-ssh-key.pem> artifact-evaluation.zip ec2-user@<public-ip-ec2-instance>:/home/ec2-user/artifact-evaluation.zip
+   scp -i <path-to-ssh-key.pem> attestable-builds-artifact-eval.zip ec2-user@<public-ip-ec2-instance>:/home/ec2-user/attestable-builds-artifact-eval.zip
    ```
 
 2. Connect to your instance via SSH, unzip the files and switch directory
 
    ```bash   
    ssh -i <path-to-ssh-key.pem> ec2-user@<public-ip-ec2-instance>
-   unzip artifact-evaluation.zip && cd attestable-builds
+   unzip attestable-builds-artifact-eval.zip
+   mv attestable-builds-artifact-eval attestable-builds
+   cd attestable-builds
    ```
 
 3. Install git:
