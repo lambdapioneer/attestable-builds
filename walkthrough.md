@@ -19,7 +19,7 @@ The first step is to prepare the Git repository including the sample projects us
 The following list provides a step-by-step overview of the necessary preparation steps:
 
 1. Create a GitHub account where you can host the `ab-samples` repository
-2. Fork our [sample repository](https://github.com/lambdapioneer/ab-samples/tree/artifact-eval) to your own GitHub account. Make sure to copy all branches, i.e. remove the checkbox from `Copy the main branch only`
+2. Fork our [sample repository](https://github.com/lambdapioneer/ab-samples) to your own GitHub account. Make sure to copy all branches, i.e. remove the checkbox from `Copy the main branch only`
 3. (Optional): Verify that your fork has multiple branches (e.g., project_verifier_client_j3, project_tinycc,...). If the project-specific branches are not available, clone the repository and run the `./scripts/recreate_branches.sh` script to create them.   
 4. On GitHub, navigate to the [Developer Settings](https://github.com/settings/apps) of your GitHub account.
 5. Navigate to `Personal access tokens -> Fine-grained tokens` and click `Generate new token`.
@@ -94,8 +94,8 @@ Now the EC2 machine can be prepared for running the experiments.
 4. Run the preparation script to install necessary dependencies and configuring the system: 
 
    ```bash
-   ./scripts/artifact-eval-setup.sh <GitHubAccount>/ab-samples/tree/artifact-eval <INSERT TOKEN>
-   # e.g. ./scripts/artifact-eval-setup.sh linsm/ab-samples/tree/artifact-eval github_pat....
+   ./scripts/artifact-eval-setup.sh <OWNER>/<REPO> <INSERT TOKEN>
+   # e.g. ./scripts/artifact-eval-setup.sh linsm/ab-samples github_pat....
    ```
 
    The repository name refers to the fork created in the [Prepare the sample repository](#prepare-the-sample-repository-5-human-minutes).
