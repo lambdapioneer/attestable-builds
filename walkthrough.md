@@ -92,7 +92,8 @@ Now the EC2 machine can be prepared for running the experiments.
 4. Run the preparation script to install necessary dependencies and configuring the system: 
 
    ```bash
-   ./scripts/artifact-eval-setup.sh <INSERT REPOSITORY> <INSERT TOKEN>
+   ./scripts/artifact-eval-setup.sh <GitHubAccount>/ab-samples/tree/artifact-eval <INSERT TOKEN>
+   # e.g. ./scripts/artifact-eval-setup.sh linsm/ab-samples/tree/artifact-eval github_pat....
    ```
 
    The repository name refers to the fork created in the [Prepare the sample repository](#prepare-the-sample-repository-5-human-minutes).
