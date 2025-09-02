@@ -20,17 +20,19 @@ The following list provides a step-by-step overview of the necessary preparation
 
 1. Create a GitHub account where you can host the `ab-samples` repository
 2. Fork our [sample repository](https://github.com/lambdapioneer/ab-samples) to your own GitHub account. Make sure to copy all branches, i.e. remove the checkbox from `Copy the main branch only`
-3. (Optional): Verify that your fork has multiple branches (e.g., project_verifier_client_j3, project_tinycc,...). If the project-specific branches are not available, clone the repository and run the `./scripts/recreate_branches.sh` script to create them.   
-4. On GitHub, navigate to the [Developer Settings](https://github.com/settings/apps) of your GitHub account.
-5. Navigate to `Personal access tokens -> Fine-grained tokens` and click `Generate new token`.
-6. Give it a name and select `Only select repositories` and select the new repository (ab-samples).
-7. Click on `Add permissions` and select the following permissions:
+3. Clone the repository
+4. Switch to the `artifact-eval` branch: `git checkout artifact-eval` 
+5. Run the `./scripts/recreate_branches.sh` script to create the project-specific branches.   
+6. On GitHub, navigate to the [Developer Settings](https://github.com/settings/apps) of your GitHub account.
+7. Navigate to `Personal access tokens -> Fine-grained tokens` and click `Generate new token`.
+8. Give it a name and select `Only select repositories` and select the new repository (ab-samples).
+9. Click on `Add permissions` and select the following permissions:
 	- Actions with Read and write.
 	- Administration with Read and write.
 	- Commit statuses with Read-only.
 	- Contents with Read-only.
 	- Environments with Read-only.
-8. Generate the token and save it. This will be used later to configure the environment variable on the AWS instance.
+10. Generate the token and save it. This will be used later to configure the environment variable on the AWS instance.
 
 ## Prepare the AWS environment (10min human-time + 5min machine-time)
 
