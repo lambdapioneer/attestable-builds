@@ -19,20 +19,19 @@ The first step is to prepare the Git repository including the sample projects us
 The following list provides a step-by-step overview of the necessary preparation steps:
 
 1. Create a GitHub account where you can host the `ab-samples` repository
-2. Fork our [sample repository](https://github.com/lambdapioneer/ab-samples) to your own GitHub account. Make sure to copy all branches, i.e. remove the checkbox from `Copy the main branch only`
+2. Fork our [sample repository](https://github.com/lambdapioneer/ab-samples) to your own GitHub account. 
 3. Clone the repository
-4. Switch to the `artifact-eval` branch: `git checkout artifact-eval` 
-5. Run the `./scripts/recreate_branches.sh` script to create the project-specific branches.   
-6. On GitHub, navigate to the [Developer Settings](https://github.com/settings/apps) of your GitHub account.
-7. Navigate to `Personal access tokens -> Fine-grained tokens` and click `Generate new token`.
-8. Give it a name and select `Only select repositories` and select the new repository (ab-samples).
-9. Click on `Add permissions` and select the following permissions:
+4. Run the `./scripts/recreate_branches.sh` script to create the project-specific branches.   
+5. On GitHub, navigate to the [Developer Settings](https://github.com/settings/apps) of your GitHub account.
+6. Navigate to `Personal access tokens -> Fine-grained tokens` and click `Generate new token`.
+7. Give it a name and select `Only select repositories` and select the new repository (ab-samples).
+8. Click on `Add permissions` and select the following permissions:
 	- Actions with Read and write.
 	- Administration with Read and write.
 	- Commit statuses with Read-only.
 	- Contents with Read-only.
 	- Environments with Read-only.
-10. Generate the token and save it. This will be used later to configure the environment variable on the AWS instance.
+9. Generate the token and save it. This will be used later to configure the environment variable on the AWS instance.
 
 ## Prepare the AWS environment (10min human-time + 5min machine-time)
 
